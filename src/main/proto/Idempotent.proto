@@ -7,19 +7,15 @@ option java_package = "bhsg.com.cache";
 option java_outer_classname = "IdempotentProto";
 
 service IdempotentService {
-    rpc ExistsById (IdempotentExistsRequest) returns (IdempotentExistsReply) {
+    rpc GetByXIdempotencyKey (IdempotentByXIdempotencyRequest) returns (IdempotentReply) {
     }
 
     rpc Save (IdempotentRequest) returns (IdempotentReply) {
     }
 }
 
-message IdempotentExistsRequest {
-    string id = 1;
-}
-
-message IdempotentExistsReply {
-    bool exists = 1;
+message IdempotentByXIdempotencyRequest {
+    string xIdempotencyKey = 1;
 }
 
 message IdempotentRequest {
@@ -28,5 +24,6 @@ message IdempotentRequest {
 }
 
 message IdempotentReply {
-    string id = 1;
+    string xIdempotencyKey = 1;
+    string id = 2;
 }
