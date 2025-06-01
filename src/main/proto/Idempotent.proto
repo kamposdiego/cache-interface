@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package bhsg.com.cache;
+
+option java_multiple_files = true;
+option java_package = "bhsg.com.cache";
+option java_outer_classname = "IdempotentProto";
+
+service IdempotentService {
+    rpc ExistsById (IdempotentExistsRequest) returns (IdempotentExistsReply) {
+    }
+
+    rpc Save (IdempotentRequest) returns (IdempotentReply) {
+    }
+}
+
+message IdempotentExistsRequest {
+    string id = 1;
+}
+
+message IdempotentExistsReply {
+    bool exists = 1;
+}
+
+message IdempotentRequest {
+    string id = 1;
+    int32 ttl = 2;
+}
+
+message IdempotentReply {
+    string id = 1;
+}
