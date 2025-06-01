@@ -19,8 +19,8 @@ message IdempotentByXIdempotencyRequest {
 }
 
 message IdempotentRequest {
-    string id = 1;
-    int32 ttl = 2;
+    string xIdempotencyKey = 1;
+    string id = 2;
 }
 
 message IdempotentReply {
